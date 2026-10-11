@@ -52,27 +52,9 @@ python run_experiments.py --seeds 42 43 44 45 46 47 48 49 50 51 --num-traces 5 -
 
 This configuration uses **10 master seeds × 5 workload traces per seed × 8 policy variants = 400 policy–trace runs**. For each seed, the five traces share the same generated heterogeneous node fleet.
 
-The experiment runner generates per-trace, per-seed, and overall result tables, paired-effect summaries, a report, figures, and per-seed dataset folders under `experiment_output/`. Standard deviations in the plots are calculated across seed-level means; they are descriptive standard deviations, not confidence intervals.
+The experiment runner generates per-trace, per-seed, and overall result tables, paired-effect summaries, a report, and the six current multi-seed figures under `experiment_output/`. It also creates per-seed datasets used by the simulation. Standard deviations in the plots are calculated across seed-level means; they are descriptive standard deviations, not confidence intervals.
 
-### 3. Regenerate manuscript-support figures (optional)
-
-If you need to regenerate the figures from the latest experiment outputs, run:
-
-```powershell
-python make_manuscript_figures.py --output-dir experiment_output
-```
-
-This step is optional if you already have the figures you intend to use. The experiment runner also generates the combined SLA/active-node panel at `experiment_output/fig_sla_active_multiseed.png`.
-
-## Run the original four-policy experiment
-
-The repository also includes fixed root-level node and workload CSVs for a smaller, original experiment:
-
-```powershell
-python e3cp_simulation.py
-```
-
-This runs the four policies on the fixed seed-42 inputs. Its results are **not directly interchangeable** with the main 10-seed, eight-policy evaluation. Use `run_experiments.py` for the main paper-level experiment.
+The experiment runner generates the current multi-seed figures directly, including `experiment_output/fig_sla_active_multiseed.png`; no separate figure-generation script is required.
 
 ## Audit and reproducibility notes
 
