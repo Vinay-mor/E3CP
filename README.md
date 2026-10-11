@@ -12,6 +12,8 @@ E3CP is a simulation-based research project for evaluating energy-aware containe
 | `gen_dataset.py` | Generates seeded synthetic edge-node fleets and workload traces |
 | `run_experiments.py` | Runs the multi-seed, eight-policy evaluation and generates result tables, reports, and figures |
 | `test_simulation_audit.py` | Regression tests for audited simulation edge cases |
+| `edge_nodes.csv` | Fixed 30-node synthetic edge-fleet dataset used by the standalone simulator |
+| `container_requests_trace0.csv`–`container_requests_trace4.csv` | Five fixed synthetic workload traces used by the standalone simulator |
 | `requirements.txt` | Python dependencies |
 | `experiment_output/` | Current experiment report, aggregate and per-run results, figures, and generated datasets |
 
@@ -51,6 +53,8 @@ python run_experiments.py --seeds 42 43 44 45 46 47 48 49 50 51 --num-traces 5 -
 This configuration runs **10 master seeds × 5 workload traces per seed × 8 policy variants = 400 policy–trace runs**. For each seed, the five workload traces use the same generated heterogeneous node fleet.
 
 The runner generates per-trace, per-seed, and overall result tables, paired-effect summaries, a report, and multi-seed figures in `experiment_output/`. It also writes the generated datasets used by the simulation. Running the experiment again with the same code, dependencies, and parameters should reproduce the seeded synthetic inputs and corresponding outputs.
+
+The six root-level CSV files are retained as the fixed dataset for running `e3cp_simulation.py` directly. The multi-seed experiment runner generates separate seed-specific datasets for its evaluations; those outputs do not replace the fixed root dataset.
 
 Standard deviations shown in the reported summaries are descriptive standard deviations across seed-level means; they are not confidence intervals.
 
